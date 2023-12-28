@@ -36,16 +36,9 @@
         #container {
             display: flex;
             flex-direction: column; /* Ustawienie kontenera jako kolumna */
-            align-items: flex-start; /* Wyśrodkuj elementy na lewo kontenera */
-            justify-content: center;
+            align-items: center; /* Wyśrodkuj elementy na środku kontenera */
+            justify-content: flex-start;
             height: 90vh; /* Użyj 100% wysokości widoku */
-        }
-
-        #container-inside {
-            display: flex;
-            flex-direction: column; /* Ustawienie elementów wewnątrz kontenera jako kolumna */
-            align-items: flex-start; /* Wyśrodkuj elementy na lewo wewnątrz kontenera */
-            width: 100%; /* Ustaw szerokość na 100% */
         }
 
         .compendium {
@@ -62,10 +55,8 @@
 <body>
     <div id="container">
         <h1>LOS SANTOS POLICE DEPARTMENT</h1>
-        <div id="container-inside">
-            <br> <!-- Nowa linia przed "kompendium" -->
-            <h1 class="compendium">kompendium</h1>
-        </div>
+        <br> <!-- Nowa linia przed "kompendium" -->
+        <h1 class="compendium">kompendium</h1>
     </div>
 
     <div class="inspectEditor" data-value="html>body>div | 545.00x931.00" style="width: 545px; height: 931px; left: 0px; top: 0px; display: block;"></div>
