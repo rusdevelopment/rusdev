@@ -93,29 +93,32 @@
             z-index: 2;
             display: block;
             font-family: 'Times New Roman', Times, serif;
+            text-shadow: 2px 2px 5px #000000; /* Dodano cień tekstu */
+            padding: 10px; /* Dodano wypełnienie */
+            border-radius: 8px;
         }
 
         #bookmark-icon {
             position: fixed;
-            top: 15px; /* Zmieniono top na 15px dla lepszej widoczności na telefonie */
-            left: 15px; /* Zmieniono left na 15px dla lepszej widoczności na telefonie */
-            width: 40px; /* Zmieniono width na 40px dla lepszej widoczności na telefonie */
-            height: 40px; /* Zmieniono height na 40px dla lepszej widoczności na telefonie */
-            background: linear-gradient(to right, #3498db, #f1c40f);
-            border-radius: 8px; /* Zmieniono border-radius na 8px dla lepszego wyglądu na telefonie */
+            top: 30px; /* Zmniejszono top na 30px */
+            left: 20px; /* Zmniejszono left na 20px */
+            width: 60px; /* Zmniejszono width na 60px */
+            height: 45px; /* Zmniejszono height na 45px */
+            background: linear-gradient(to right, #001f3f, #f1c40f);
+            border-radius: 8px; /* Zmieniono border-radius na 8px dla lepszego wyglądu */
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             z-index: 2;
-            font-size: 1.2em; /* Zmieniono font-size na 1.2em dla lepszej widoczności na telefonie */
+            font-size: 1.2em;
             color: white;
-            margin-left: 10px; /* Zmieniono margin-left na 10px dla lepszej widoczności na telefonie */
+            margin-left: 10px;
             transition: background 0.3s;
         }
 
         #bookmark-icon:hover {
-            background: linear-gradient(to right, #2c81ba, #d4ac0d);
+            background: linear-gradient(to right, #001a33, #f1c40f); /* Zmieniono niebieski na ciemny niebieski */
         }
 
         #bookmark-icon span {
@@ -125,7 +128,7 @@
 
         .bookmark-list {
             position: fixed;
-            top: 65px; /* Zmieniono top na 65px dla lepszej widoczności na telefonie */
+            top: 185px;
             left: -200px;
             width: 200px;
             height: 100%;
