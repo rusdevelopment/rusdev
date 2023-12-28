@@ -27,6 +27,17 @@
             font-family: Arial, sans-serif;
             text-align: center;
             position: relative;
+            overflow: hidden;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 20%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
         }
 
         h1,
@@ -36,7 +47,7 @@
             margin: 0;
             text-shadow: 2px 2px 2px #000000;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         #container {
@@ -44,15 +55,17 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            height: 90vh;
+            height: 95vh;
+            z-index: 2;
         }
 
         img {
             position: absolute;
             top: 10px;
-            left: 10px;
+            right: 10px;
             width: 132.825px;
             height: auto;
+            z-index: 2;
         }
 
         h1 {
@@ -67,30 +80,188 @@
             margin: 0;
             cursor: pointer;
             margin-left: 60%;
-            text-decoration: none; /* Usunięcie podkreślenia odnośnika */
+            text-decoration: none;
         }
 
-        .black-overlay {
+        #protect-serve {
+            font-style: italic;
+            font-size: 1.5rem;
+            color: white;
+            font-weight: bold;
+            margin-top: -65px;
+            position: relative;
+            z-index: 2;
+            display: block;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        #bookmark-icon {
+            position: fixed;
+            top: 15px; /* Zmieniono top na 15px dla lepszej widoczności na telefonie */
+            left: 15px; /* Zmieniono left na 15px dla lepszej widoczności na telefonie */
+            width: 40px; /* Zmieniono width na 40px dla lepszej widoczności na telefonie */
+            height: 40px; /* Zmieniono height na 40px dla lepszej widoczności na telefonie */
+            background: linear-gradient(to right, #3498db, #f1c40f);
+            border-radius: 8px; /* Zmieniono border-radius na 8px dla lepszego wyglądu na telefonie */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 2;
+            font-size: 1.2em; /* Zmieniono font-size na 1.2em dla lepszej widoczności na telefonie */
+            color: white;
+            margin-left: 10px; /* Zmieniono margin-left na 10px dla lepszej widoczności na telefonie */
+            transition: background 0.3s;
+        }
+
+        #bookmark-icon:hover {
+            background: linear-gradient(to right, #2c81ba, #d4ac0d);
+        }
+
+        #bookmark-icon span {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .bookmark-list {
+            position: fixed;
+            top: 65px; /* Zmieniono top na 65px dla lepszej widoczności na telefonie */
+            left: -200px;
+            width: 200px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 0 0 5px 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            transition: left 0.3s;
+            z-index: 3;
+        }
+
+        .bookmark-list a {
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 10px;
+            margin: 5px 0;
+            font-size: 1.2rem;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .bookmark-list a:hover {
+            background-color: #555;
+        }
+
+        #arrow-icon {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 17vh;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 0;
+            top: 40%;
+            left: calc(200px - 10px);
+            font-size: 1.5em;
+            color: white;
+            transform: translateY(-50%);
+            transition: transform 0.3s;
+            cursor: pointer;
+            z-index: 4;
+        }
+
+        .animated-text {
+            font-size: 1.5rem;
+            color: white;
+            font-weight: bold;
+            margin-top: -120px;
+            position: relative;
+            z-index: 2;
+            font-family: Cursive, sans-serif;
+            display: none;
+        }
+
+        .blink {
+            animation: blink 2s infinite alternate;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 0.2;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.2;
+            }
         }
     </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var bookmarkIcon = document.getElementById('bookmark-icon');
+            var bookmarkList = document.getElementById('bookmark-list');
+            var arrowIcon = document.getElementById('arrow-icon');
+            var animatedText = document.getElementById('animated-text');
+            var protectServeText = document.getElementById('protect-serve');
+            var body = document.body;
+
+            var toggleText = function () {
+                animatedText.classList.toggle('blink');
+                protectServeText.classList.toggle('blink');
+            };
+
+            setInterval(toggleText, 2000);
+
+            bookmarkIcon.addEventListener('click', function (event) {
+                event.stopPropagation();
+                if (parseInt(getComputedStyle(bookmarkList).left) < 0) {
+                    bookmarkList.style.left = '0';
+                    arrowIcon.style.transform = 'rotate(180deg)';
+                } else {
+                    bookmarkList.style.left = '-200px';
+                    arrowIcon.style.transform = 'rotate(0deg)';
+                }
+            });
+
+            arrowIcon.addEventListener('click', function (event) {
+                event.stopPropagation();
+                if (parseInt(getComputedStyle(bookmarkList).left) < 0) {
+                    bookmarkList.style.left = '0';
+                    arrowIcon.style.transform = 'rotate(180deg)';
+                } else {
+                    bookmarkList.style.left = '-200px';
+                    arrowIcon.style.transform = 'rotate(0deg)';
+                }
+            });
+
+            body.addEventListener('click', function () {
+                bookmarkList.style.left = '-200px';
+                arrowIcon.style.transform = 'rotate(0deg)';
+            });
+
+            bookmarkList.addEventListener('click', function (event) {
+                event.stopPropagation();
+            });
+        });
+    </script>
 
     <style type="text/css" id="operaUserStyle"></style>
 </head>
 
 <body>
+    <div class="overlay"></div>
     <div class="black-overlay"></div>
     <div id="container">
-        <img src="logo.png" alt="Logo" style="position: absolute; top: 10px; left: 10px; width: 132.825px; height: auto;">
         <h1>LOS SANTOS POLICE DEPARTMENT</h1>
-        <br>
-        <a href="https://2no.co/2OG1Z2" target="_blank" class="compendium">KOMPENDIUM</a>
+        <div id="animated-text" class="animated-text blink"></div>
+        <div id="protect-serve" class="animated-text blink">To protect and to serve</div>
+        <div id="bookmark-icon"><span>&#9776;</span></div>
+        <div id="bookmark-list" class="bookmark-list">
+            <a href="#" target="_blank">Zakładka 1</a>
+            <a href="#" target="_blank">Zakładka 2</a>
+            <a href="#" target="_blank">Zakładka 3</a>
+            <div id="arrow-icon">&#9654;</div>
+        </div>
+        <img src="logo.png" alt="Logo">
     </div>
 
     <div class="inspectEditor" data-value="html>body>div | 545.00x931.00"
